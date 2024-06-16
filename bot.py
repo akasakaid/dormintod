@@ -84,7 +84,7 @@ class Dormintod:
                 self.log(f"{putih}farming is started !")
                 farming_amount = res.json()["farming_value"]
                 self.log(f"{hijau}farming balance : {putih}{farming_amount}")
-                self.log(f'{putih}next claim : {hijau}{self.secto(round(farming_left))}')
+                self.log(f'{putih}next claim in : {hijau}{self.secto(round(farming_left))}')
                 return round(farming_left) + 5
 
             if farming_status == "farming_status_finished":
@@ -119,10 +119,12 @@ class Dormintod:
         print(banner)
         
         accounts = self.load_data()
+        print(self.line)
         while True:
             list_countdown = []
             _start = int(time.time())
-            for account in accounts:
+            for no,account in enumerate(accounts):
+                self.log(f'{hijau}account number : {putih}{no + 1}{hijau}/{putih}{len(accounts)}')
                 self.user_info(account)
                 result = self.status_farming(account)
                 list_countdown.append(result)
